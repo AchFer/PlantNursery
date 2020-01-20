@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <center>
+    <h1>{{ plantmaintainings[0].userplant.name  }} history ({{ plantmaintainings.getTotalItemCount }})</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(plantmaintainings, 'Date', 'date') }}</th>
+                <th>{{ knp_pagination_sortable(plantmaintainings, 'Soil type', 'soiltype') }}</th>
+                <th>Watered</th>
+                <th>Humidity</th>
+                <th>Temperature</th>
+                <th>Luminosity</th>
+                <th>{{ knp_pagination_sortable(plantmaintainings, 'Height', 'height') }}</th>
+                <th>Photo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for plantmaintaining in plantmaintainings %}
+            <tr>
+                <td><a href="{{ path('plantmaintaining_show', { 'id': plantmaintaining.id }) }}">{% if plantmaintaining.date %}{{ plantmaintaining.date|date('Y-m-d') }}{% endif %}</a></td>
+                <td>{{ plantmaintaining.soiltype }}</td>
+                <td>{% if plantmaintaining.watered %}Yes{% else %}No{% endif %}</td>
+                <td>{{ plantmaintaining.humidity }}</td>
+                <td>{{ plantmaintaining.temperature }}</td>
+                <td>{{ plantmaintaining.luminosity }}</td>
+                <td>{{ plantmaintaining.height }}</td>
+                <td> {% if plantmaintaining.photo is not empty %}
+                        <img src="{{ asset('Uploads/Images/' ~ plantmaintaining.photo ) }}" >
+                    {% endif %}
+                </td>                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('plantmaintaining_show', { 'id': plantmaintaining.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('plantmaintaining_edit', { 'id': plantmaintaining.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(plantmaintainings) }}
+    </div>
+    <ul>
+        <li>
+            <a href="{{ path('myplantmaintaining_new', { 'id': plantmaintainings[0].userplant.id }) }}">Maintain the plant</a>
+        </li>
+        <li>
+            <a href="{{ path('userplant_index')}}">Back to my plant list</a>
+        </li>
+    </ul>
+    </center>
+{% endblock %}
+

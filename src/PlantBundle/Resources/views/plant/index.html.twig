@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<table width="50%">
+
+        <tr>
+            <td align="right" width="30%">
+                    {{ form_start(form) }}
+                        {{ form_widget(form) }}
+            </td>
+            <td align="left" width="2%">
+                <input type="submit" value="Search" >
+            </td>
+
+            <td width="33%"></td>
+            <p></p>
+
+    <td width="33%">
+        <center><h1>Plants list ({{ plants.getTotalItemCount }})</h1></center>
+    </td>
+        </tr>
+        </table>
+
+    {{ form_end(form) }}
+<br>
+
+<center>
+    <table>
+        <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(plants, 'Plantname', 'plantname') }}</th>
+                <th>{{ knp_pagination_sortable(plants, 'Binomialname', 'binomialname') }}</th>
+                <th>Clades</th>
+                <th>{{ knp_pagination_sortable(plants, 'Order', 'plantorder') }} </th>
+                <th>{{ knp_pagination_sortable(plants, 'Family', 'family') }} </th>
+                <th>{{ knp_pagination_sortable(plants, 'Subfamily', 'subfamily') }}</th>
+                <th>{{ knp_pagination_sortable(plants, 'Tribe', 'tribe') }}</th>
+                <th>{{ knp_pagination_sortable(plants, 'Genus', 'genus') }}</th>
+                <th>{{ knp_pagination_sortable(plants, 'Species', 'spacies') }}</th>
+                <th>Watering in sandy soil</th>
+                <th>Watering in clay soil</th>
+                <th>Photo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for plant in plants %}
+            <tr>
+                <td><a href="{{ path('plant_show', { 'id': plant.id }) }}">{{ plant.plantname }}</a></td>
+                <td>{{ plant.binomialname }}</td>
+                <td>{{ plant.clade1 }} {{ plant.clade2 }} {{ plant.clade3 }}</td>
+                <td>{{ plant.plantorder }}</td>
+                <td>{{ plant.family }}</td>
+                <td>{{ plant.subfamily }}</td>
+                <td>{{ plant.tribe }}</td>
+                <td>{{ plant.genus }}</td>
+                <td>{{ plant.species }}</td>
+                <td>{{ plant.wateringsandysoil ~ " time every " ~ plant.frequencywateringsandysoil ~" "~ plant.periodofwateringsandysoil}}</td>
+                <td>{{ plant.wateringclaysoil  ~ " time every " ~ plant.frequencywateringclaysoil ~" "~ plant.periodofwateringclaysoil}}</td>
+                <td> {% if plant.photo is not empty %}
+                        <img src="{{ asset('Uploads/Images/' ~ plant.photo ) }}" >
+                    {% endif %}
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('plant_show', { 'id': plant.id }) }}">show</a>
+                        </li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>
+                                <a href="{{ path('plant_edit', { 'id': plant.id }) }}">edit</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(plants) }}
+    </div>
+    {% if is_granted('ROLE_ADMIN') %}
+        <ul>
+            <li>
+                <a href="{{ path('plant_new') }}">Create a new plant</a>
+            </li>
+        </ul>
+    {% endif %}
+
+{% endblock %}
+

@@ -1,0 +1,114 @@
+event_event:
+    resource: "@EventBundle/Resources/config/routing/event.yml"
+    prefix:   /event
+
+avis_event:
+    resource: "@EventBundle/Resources/config/routing/avis.yml"
+    prefix:   /avis
+
+participer_event:
+    resource: "@EventBundle/Resources/config/routing/avis.yml"
+    prefix:   /partciper
+
+event_index:
+    path:     /event
+    defaults: { _controller: "EventBundle:Event:index" }
+    methods:  GET
+
+event_show:
+    path:     /event/{id}/show
+    defaults: { _controller: "EventBundle:Event:show" }
+    methods:  GET
+
+event_new:
+    path:     /event/new
+    defaults: { _controller: "EventBundle:Event:new" }
+    methods:  [GET, POST]
+
+event_edit:
+    path:     /event/{id}/edit
+    defaults: { _controller: "EventBundle:Event:edit" }
+    methods:  [GET, POST]
+
+event_delete:
+    path:     /event/{id}/delete
+    defaults: { _controller: "EventBundle:Event:delete" }
+    methods:  DELETE
+
+avis_index:
+    path:     /avis
+    defaults: { _controller: "EventBundle:Avis:index" }
+    methods:  GET
+
+avis_show:
+    path:     /avis/{idA}/showc
+    defaults: { _controller: "EventBundle:Avis:show" }
+    methods:  GET
+
+avis_new:
+    path:     /avis/newc/{id}
+    defaults: { _controller: "EventBundle:Avis:new" }
+    methods:  [GET, POST]
+
+ajouterComm:
+    path:     /comment/{idEvent}
+    defaults: { _controller: "EventBundle:Avis:ajouterComm" }
+
+
+avis_edit:
+    path:     /avis/{idA}/editc
+    defaults: { _controller: "EventBundle:Avis:edit" }
+    methods:  [GET, POST]
+
+avis_delete:
+    path:     /avis/{idA}/deletec
+    defaults: { _controller: "EventBundle:Avis:delete" }
+    methods:  DELETE
+
+ajouterservation:
+    path:     /participer/{idEvent}
+    defaults: { _controller: "EventBundle:Participant:participer" }
+
+participant_index:
+    path:     /participant
+    defaults: { _controller: "EventBundle:Participant:index" }
+    methods:  GET
+
+participant_show:
+    path:     participant/{idPar}/show
+    defaults: { _controller: "EventBundle:Participant:show" }
+    methods:  GET
+
+participant_new:
+    path:     participant/new
+    defaults: { _controller: "EventBundle:Participant:new" }
+    methods:  [GET, POST]
+
+participant_edit:
+    path:     participant/{idPar}/edit
+    defaults: { _controller: "EventBundle:Participant:edit" }
+    methods:  [GET, POST]
+
+participant_delete:
+    path:     participant/{idPar}/delete
+    defaults: { _controller: "EventBundle:Participant:delete" }
+    methods:  DELETE
+
+participation_page:
+    path:     /participation
+    defaults: { _controller: "EventBundle:Participant:affichelist" }
+
+annuleservation:
+    path:     /annparticiper/{idEvent}
+    defaults: { _controller: "EventBundle:Participant:Annuleparticiper" }
+
+cmt_new:
+    path:     /avis/newco/{id}
+    defaults: { _controller: "EventBundle:Avis:cmt" }
+    methods:  [GET, POST]
+
+addcomm:
+    path:     /event/{id}/showcomm
+    defaults: { _controller: "EventBundle:Avis:showaddcomm" }
+    methods:  GET
+

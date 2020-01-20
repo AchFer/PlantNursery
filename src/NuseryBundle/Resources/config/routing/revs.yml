@@ -1,0 +1,24 @@
+revs_index:
+    path:     /index
+    defaults: { _controller: "NuseryBundle:Revs:index" }
+    methods:  GET
+
+revs_show:
+    path:     /{id}/show
+    defaults: { _controller: "NuseryBundle:Revs:show" }
+    methods:  GET
+
+revs_new:
+    path:     /new
+    defaults: { _controller: "NuseryBundle:Revs:new" }
+    methods:  [GET, POST]
+
+revs_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "NuseryBundle:Revs:edit" }
+    methods:  [GET, POST]
+
+revs_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "NuseryBundle:Revs:delete" }
+    methods:  DELETE

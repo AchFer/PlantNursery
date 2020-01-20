@@ -1,0 +1,52 @@
+event:
+    resource: "@EventBundle/Resources/config/routing.yml"
+    prefix:   /
+
+nusery:
+    resource: "@NuseryBundle/Resources/config/routing.yml"
+    prefix:   /
+
+blog:
+    resource: "@BlogBundle/Resources/config/routing.yml"
+    prefix:   /
+
+plant:
+    resource: "@PlantBundle/Resources/config/routing.yml"
+    prefix:   /
+
+main:
+    resource: "@MainBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+utilisateur_utilisateur:
+    resource: "@UtilisateurUtilisateurBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ecommerce_ecommerce:
+    resource: "@EcommerceEcommerceBundle/Resources/config/routing.yml"
+    prefix:   /ecommerce
+
+
+plantk:
+    resource: "@PlantBundle/Resources/config/routing.yml"
+    prefix:   /plant
+
+maink:
+    resource: "@MainBundle/Resources/config/routing.yml"
+    prefix:   /pl
+
+nusery1:
+    resource: "@NuseryBundle/Resources/config/routing.yml"
+    prefix:   /Nusery
+
+blog1:
+    resource: "@BlogBundle/Resources/config/routing.yml"
+    prefix:   /Blog
+
+eventt:
+    resource: "@EventBundle/Resources/config/routing.yml"
+    prefix:   /event

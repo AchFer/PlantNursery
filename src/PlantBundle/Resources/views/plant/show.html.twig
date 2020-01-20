@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{% if plant.photo is not empty %}
+        <img src="{{ asset('Uploads/Images/' ~ plant.photo ) }}" >
+        {% endif %}
+        {{ plant.plantname }}
+    </h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Binomialname</th>
+                <td>{{ plant.binomialname }}</td>
+            </tr>
+            <tr>
+                <th>Clade(s)</th>
+                <td>{{ plant.clade1 }} {{ plant.clade2 }} {{ plant.clade3 }}</td>
+            </tr>
+            <tr>
+                <th>Order</th>
+                <td>{{ plant.plantorder }}</td>
+            </tr>
+            <tr>
+                <th>Family</th>
+                <td>{{ plant.family }}</td>
+            </tr>
+            <tr>
+                <th>Subfamily</th>
+                <td>{{ plant.subfamily }}</td>
+            </tr>
+            <tr>
+                <th>Tribe</th>
+                <td>{{ plant.tribe }}</td>
+            </tr>
+            <tr>
+                <th>Genus</th>
+                <td>{{ plant.genus }}</td>
+            </tr>
+            <tr>
+                <th>Species</th>
+                <td>{{ plant.species }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td> {{ plant.description |raw }} </td>
+            </tr>
+            <tr>
+                <th>Watering in sandy soil</th>
+                <td> {{ plant.wateringsandysoil }} every {{ plant.frequencywateringsandysoil }} {{ plant.periodofwateringsandysoil }}</td>
+            </tr>
+            <tr>
+                <th>Watering in clays oil</th>
+                <td> {{ plant.wateringclaysoil }} every {{ plant.frequencywateringclaysoil }} {{ plant.periodofwateringclaysoil }}</td>
+            </tr>
+            <tr>
+
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <ul>
+        <li>
+            <a href="{{ path('plant_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('plant_edit', { 'id': plant.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

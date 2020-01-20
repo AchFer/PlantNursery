@@ -1,0 +1,11 @@
+nusery_nursery:
+    resource: "@NuseryBundle/Resources/config/routing/nursery.yml"
+    prefix:   /nursery
+
+nusery_revs:
+    resource: "@NuseryBundle/Resources/config/routing/revs.yml"
+    prefix:   /revs
+
+nusery_homepage:
+    path:     /
+    defaults: { _controller: NuseryBundle:Default:index }

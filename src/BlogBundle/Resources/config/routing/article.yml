@@ -1,0 +1,66 @@
+
+article_index:
+  path:     /
+  defaults: { _controller: "BlogBundle:Article:index" }
+
+article_pdf:
+  path:     /{idA}/pdf
+  defaults: { _controller: "BlogBundle:Article:pdf" }
+
+article_list:
+  path:     /list
+  defaults: { _controller: "BlogBundle:Article:list" }
+
+article_listCat1:
+  path:     /listCat1
+  defaults: { _controller: "BlogBundle:Article:listCat1" }
+
+article_listCat2:
+    path:     /listCat2
+    defaults: { _controller: "BlogBundle:Article:listCat2" }
+
+article_listCat3:
+  path:     /listCat3
+  defaults: { _controller: "BlogBundle:Article:listCat3" }
+
+article_listCat4:
+  path:     /listCat4
+  defaults: { _controller: "BlogBundle:Article:listCat3" }
+
+article_listCat5:
+  path:     /listCat5
+  defaults: { _controller: "BlogBundle:Article:listCat5" }
+
+article_listCat6:
+  path:     /listCat6
+  defaults: { _controller: "BlogBundle:Article:listCat6" }
+
+article_listCat7:
+  path:     /listCat7
+  defaults: { _controller: "BlogBundle:Article:listCat7" }
+
+article_listCat8:
+  path:     /listCat8
+  defaults: { _controller: "BlogBundle:Article:listCat8" }
+
+article_show:
+  path:     /{idA}/show
+  defaults: { _controller: "BlogBundle:Article:show" }
+
+article_new:
+  path:     /new
+  defaults: { _controller: "BlogBundle:Article:new" }
+  methods:  [GET, POST]
+
+article_edit:
+  path:     /{idA}/edit
+  defaults: { _controller: "BlogBundle:Article:edit" }
+
+article_delete:
+  path:     /{idA}/delete
+  defaults: { _controller: "BlogBundle:Article:delete" }
+
+
+ajax_search:
+  path:     /search
+  defaults: { _controller: BlogBundle:Article:search }

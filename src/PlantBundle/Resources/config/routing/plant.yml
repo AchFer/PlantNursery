@@ -1,0 +1,39 @@
+plant_search:
+    path:     /search
+    defaults: { _controller: "PlantBundle:Plant:search" }
+    methods:  GET
+
+
+ajax_search:
+    path:     /smartsearch
+    defaults: { _controller: "PlantBundle:Plant:smartSearch" }
+    methods:  GET
+
+
+
+plant_index:
+    path:     /
+    defaults: { _controller: "PlantBundle:Plant:index" }
+    methods:  GET
+
+
+
+plant_show:
+    path:     /{id}/show
+    defaults: { _controller: "PlantBundle:Plant:show" }
+    methods:  GET
+
+plant_new:
+    path:     /new
+    defaults: { _controller: "PlantBundle:Plant:new" }
+    methods:  [GET, POST]
+
+plant_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "PlantBundle:Plant:edit" }
+    methods:  [GET, POST]
+
+plant_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "PlantBundle:Plant:delete" }
+    methods:  DELETE

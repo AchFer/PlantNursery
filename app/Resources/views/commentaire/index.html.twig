@@ -1,0 +1,78 @@
+{% extends 'front.html.twig' %}
+
+{% block body %}
+    <style>
+        th, td {
+            border-bottom: 1px solid #ddd;
+            align-content: center;
+        }
+        tr:hover {background-color: #f5f5f5;}
+        th {
+            background-color: #36a729;
+            color: white;
+        }
+        .link{
+            color: #36a729;
+        }
+    </style>
+
+    <div class="col-12 col-lg-3 order-lg-1">
+
+        <!-- widget -->
+        <section class="widget overflow-hidden mb-md-6 mb-3">
+            <ul class="list-unstyled archiveList mb-0">
+                <li class="mb-3"><a href="{{path('article_index')}}" class="d-block">My Articles</a></li>
+
+            </ul>
+        </section>
+
+
+    </div>
+
+    <center>
+    <h1>My Comments</h1>
+
+    <table>
+        <col width="250">
+        <col width="150">
+        <col width="150">
+        <col width="100">
+        <col width="50">
+        <col width="100">
+        <col width="100">
+        <thead>
+            <tr>
+                <th><center>Content</center></th>
+                <th></th>
+                <th><center>Date</center></th>
+                <th><center>Author</center></th>
+                <th></th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for commentaire in commentaires %}
+            <tr>
+                <td>{{ commentaire.content }}</td>
+                <td>Posted on <a href="{{ path('article_show',{idA:commentaire.articleId.idA}) }}">{{ commentaire.articleId.Title }}</a></td>
+                <td>{% if commentaire.date %}{{ commentaire.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td><center>{{ commentaire.id.username }}</center></td>
+                    <td>
+                            <a href="{{ path('commentaire_edit', { 'idCommentaire': commentaire.idCommentaire }) }}" class="link">edit</a>
+                </td><td>
+                            <a href="{{ path('commentaire_delete', { 'idCommentaire': commentaire.idCommentaire }) }}" class="link">delete</a>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <br>
+
+        <div align="center">
+            <a href="{{ path('commentaire_new',{'idA':4}) }}" class="btn btnTheme btnShop fwEbold text-white md-round py-md-3 px-md-4 py-2 px-3">Add a new comment<i class="fas fa-arrow-right ml-2"></i></a>
+        </div>
+    </center>
+{% endblock %}

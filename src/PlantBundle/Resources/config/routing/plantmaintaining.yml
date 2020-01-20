@@ -1,0 +1,34 @@
+plantmaintaining_index:
+    path:     /
+    defaults: { _controller: "PlantBundle:Plantmaintaining:index" }
+    methods:  GET
+
+plantmaintaining_new:
+    path:     /new
+    defaults: { _controller: "PlantBundle:Plantmaintaining:new" }
+    methods:  [GET, POST]
+
+myplantmaintaining_new:
+    path:     /new/{id}
+    defaults: { _controller: "PlantBundle:Plantmaintaining:myPlantmaintainingNew" }
+    methods:  [GET, POST]
+
+myplantmaintaining_index:
+    path:     /{id}
+    defaults: { _controller: "PlantBundle:Plantmaintaining:myPlantIndex" }
+    methods:  GET
+
+plantmaintaining_show:
+    path:     /{id}/show
+    defaults: { _controller: "PlantBundle:Plantmaintaining:show" }
+    methods:  GET
+
+plantmaintaining_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "PlantBundle:Plantmaintaining:edit" }
+    methods:  [GET, POST]
+
+plantmaintaining_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "PlantBundle:Plantmaintaining:delete" }
+    methods:  DELETE

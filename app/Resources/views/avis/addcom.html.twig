@@ -1,0 +1,51 @@
+{% extends 'front.html.twig' %}
+
+{% block body %}
+    <center>
+        <h1 style="color: #003147"><b><i><center>Event </center></i></b></h1>
+
+        <table id="example2" class="table table-bordered table-hover">
+            <tbody>
+            <tr>
+                <th style="color: #003147"><b><i>Id</i></b></th>
+                <td><span class="badge badge-danger navbar-badge">{{ event.id }}</span></td>
+            </tr>
+            <tr>
+                <th style="color: #003147"><b><i>Namee</i></b></th>
+                <td><span class="badge badge-warning navbar-badge">{{ event.nameE }}</span></td>
+            </tr>
+            <tr>
+                <th style="color: #003147"><b><i>Description</i></b></th>
+                <td><span class="badge badge-success navbar-badge">{{ event.description }}</span></td>
+            </tr>
+            <tr>
+                <th style="color: #003147"><b><i>Datee</i></b></th>
+                <td><span class="badge badge-info navbar-badge">{% if event.dateE %}{{ event.dateE|date('Y-m-d') }}{% endif %}</span></td>
+            </tr>
+            <tr>
+                <th style="color: #003147"><b><i>Lieue</i></b></th>
+                <td><span class="badge badge-secondary navbar-badge">{{ event.lieuE }}</span></td>
+            </tr>
+            <tr>
+                <th style="color: #003147"><b><i>Nbp</i></b></th>
+                <td><span class="badge badge-danger navbar-badge">{{ event.nbP }}</span></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <ul>
+            <form method="POST">
+
+                <input id="cmt" name="cmt" type="text">
+
+            </form>
+                <button type="button" class="btn btn-outline-danger" > <a href="{{ path('avis_new', { 'id': event.id }) }}">commenter</a></button>
+
+            {#        <li>#}
+            {#            {{ form_start(delete_form) }}#}
+            {#                <input type="submit" value="Delete">#}
+            {#            {{ form_end(delete_form) }}#}
+            {#        </li>#}
+        </ul>
+    </center>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1 style="color: #003147"><b><i><center>Participants list</center></i></b></h1>
+    <table id="example2" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Idpar</th>
+                <th>event</th>
+                <th>username</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for participant in participants %}
+            <tr>
+                <td><a href="{{ path('participant_show', { 'idPar': participant.idPar }) }}">{{ participant.idPar }}</a></td>
+                <td>{{ participant.idE.nameE }}</td>
+                <td>{{ participant.idU.username }}</td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

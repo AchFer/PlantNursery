@@ -1,0 +1,99 @@
+
+ecommerce_ecommerce_admin2:
+    resource: "@EcommerceEcommerceBundle/Resources/config/routing/categoriee.yml"
+    prefix:   /admin/categoriee
+
+testformulaire:
+    path:     /teste
+    defaults: { _controller: EcommerceEcommerceBundle:Default:testformulaire }
+ecommerce_homepage:
+    path:     /
+    defaults: { _controller: EcommerceEcommerceBundle:Produit:index }
+presentation:
+    path:     /presentation/{id}
+    defaults: { _controller: EcommerceEcommerceBundle:Produit:presentation }
+layout:
+    path:     /layout
+    defaults: { _controller: EcommerceEcommerceBundle:Produit:layout }
+panier:
+    path:     /panier
+    defaults: { _controller: EcommerceEcommerceBundle:Panier:panier }
+livraison:
+    path:     /livraison
+    defaults: { _controller: EcommerceEcommerceBundle:Panier:livraison }
+validation:
+    path:     /validation
+    defaults: { _controller: EcommerceEcommerceBundle:Panier:validation }
+
+categorieproduits:
+    path:     /categorie/{categorie}
+    defaults: { _controller: EcommerceEcommerceBundle:Produit:findbycategorie }
+recherchebutton:
+    path:     /recherche
+    defaults: { _controller: EcommerceEcommerceBundle:Produit:recherchebutton }
+rechercheproduit:
+    path:     /rechercheproduit
+    defaults: { _controller: EcommerceEcommerceBundle:Produit:recherchetraitement }
+ajouteraupanier:
+    path:     /panier/ajouter/{id}
+    defaults: { _controller: EcommerceEcommerceBundle:Panier:ajouterproduitaupanier }
+supprimerpanier:
+    path:     /panier/supprimer/{id}
+    defaults: { _controller: EcommerceEcommerceBundle:Panier:supprimerproduitdepanier }
+calcultva:
+    path:     /panier/calcultva
+    defaults: { _controller: EcommerceEcommerceBundle:Panier:calcultva }
+livraisonsupprimeradress:
+    path:     /panier/livraison/adresse/{id}
+    defaults: { _controller: EcommerceEcommerceBundle:Panier:supprimeradresslivraison }
+f:
+    path:     /f
+    defaults: { _controller: EcommerceEcommerceBundle:Commandes:facture }
+admin_index:
+    path:     /admin/produit
+    defaults: { _controller: "EcommerceEcommerceBundle:ProduitAdmin:index" }
+    methods:  GET
+
+admin_show:
+    path:     admin/produit/{id}/show
+    defaults: { _controller: "EcommerceEcommerceBundle:ProduitAdmin:show" }
+    methods:  GET
+
+admin_new:
+    path:     admin/produit//new
+    defaults: { _controller: "EcommerceEcommerceBundle:ProduitAdmin:new" }
+    methods:  [GET, POST]
+
+admin_edit:
+    path:     /admin/produit/{id}/edit
+    defaults: { _controller: "EcommerceEcommerceBundle:ProduitAdmin:edit" }
+    methods:  [GET, POST]
+
+admin_delete:
+    path:     /admin/produit/{id}/delete
+    defaults: { _controller: "EcommerceEcommerceBundle:ProduitAdmin:delete" }
+    methods:  DELETE
+admin_media_index:
+    path:     /admin/media
+    defaults: { _controller: "EcommerceEcommerceBundle:MediaAdmin:index" }
+    methods:  GET
+
+admin_media_show:
+    path:     admin/media/{id}/show
+    defaults: { _controller: "EcommerceEcommerceBundle:MediaAdmin:show" }
+    methods:  GET
+
+admin_media_new:
+    path:     admin/media/new
+    defaults: { _controller: "EcommerceEcommerceBundle:MediaAdmin:new" }
+    methods:  [GET, POST]
+
+admin_media_edit:
+    path:    admin/media/{id}/edit
+    defaults: { _controller: "EcommerceEcommerceBundle:MediaAdmin:edit" }
+    methods:  [GET, POST]
+
+admin_media_delete:
+    path:     admin/media/{id}/delete
+    defaults: { _controller: "EcommerceEcommerceBundle:MediaAdmin:delete" }
+    methods:  DELETE

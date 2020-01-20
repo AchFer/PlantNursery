@@ -1,0 +1,36 @@
+{% extends 'front.html.twig' %}
+
+{% block body %}
+    <h1>Rev</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ rev.id }}</td>
+            </tr>
+            <tr>
+                <th>Idn</th>
+                <td>{{ rev.idN }}</td>
+            </tr>
+            <tr>
+                <th>Rev</th>
+                <td>{{ rev.rev }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('revs_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('revs_edit', { 'id': rev.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

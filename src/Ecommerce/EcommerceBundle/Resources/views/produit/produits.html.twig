@@ -1,0 +1,63 @@
+{% extends '@EcommerceEcommerce/layout.html.twig' %}
+{% block body%}
+
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="span3">
+
+                <div class="span3">
+                    {{ include('@EcommerceEcommerce/modules/navigation.html.twig') }}
+                      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+                        {% include ('@UtilisateurUtilisateur/modules/utilisateurconnecte.html.twig')%}
+
+                {% else %}
+
+                        {% include ('@UtilisateurUtilisateur/modules/usernoncon.html.twig')%}
+
+                {% endif %}
+                    {{ render(controller('EcommerceEcommerceBundle:Panier:menupanier')) }}
+            </div>
+
+            <div class="span9">
+                {% if produits|length !=0 %}
+                <ul class="thumbnails">
+                    {% for produit in produits %}
+                        <li class="span3">
+                            <div class="thumbnail">
+                                <img src="{{ produit.image.path }}" alt="DevAndClick" width="300" height="300">
+                                <div class="caption">
+                                    <h4>{{  produit.nom }}</h4>
+                                    <p>{{ produit.prix|tva(produit.tva.multiplicate) }}DT</p>
+                                    <a class="btn btn-primary" href="{{ path('presentation',{'id':produit.id}) }}">Plus d'infos</a>
+                                    {% if panier[produit.id] is not defined %}
+                                    <a class="btn btn-success" href="{{ path('ajouteraupanier',{'id':produit.id}) }}">Ajouter au panier</a>
+                                    {% endif%}
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="pagination">
+                    <ul>
+                        <li class="disabled"><span>Précédent</span></li>
+                        <li class="disabled"><span>1</span></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">Suivant</a></li>
+                    </ul>
+                </div>
+                {% else %} <p>aucun produit</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

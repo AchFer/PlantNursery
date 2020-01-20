@@ -1,0 +1,40 @@
+{% extends 'front.html.twig' %}
+
+{% block body %}
+    <style>
+        .right {
+            position: absolute;
+            right: 50px;
+
+        }
+    </style>
+
+    <div class="right">
+        <a href="{{ path('commentaire_index') }}" class="btn btnTheme btnShop fwEbold text-white md-round py-md-3 px-md-4 py-2 px-3">Back to my comments<i class="fas fa-arrow-right ml-2"></i></a>
+    </div>
+
+    <h1>Article: {{ article.title }}</h1>
+
+    <div class="row">
+        <div class="col-12">
+            <!-- commentFormArea -->
+            <div class="commentFormArea">
+                <h2 class="headingVII text-uppercase mb-5">Leave A Comment</h2>
+                <form class="commentform">
+                    <div class="form-group w-100 mb-5">
+                    </div>
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <br>
+                    <center>
+                    <button type="submit" class="btn btnTheme btnShop md-round fwEbold text-white py-3 px-4 py-md-3 px-md-4">Post Now <i class="fas fa-arrow-right ml-2"></i></button>
+                    </center>
+                    <br>
+                        {{ form_end(form) }}
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,137 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<main>
+    <!-- introBannerHolder -->
+    <section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url({{ asset('images/b-bg7.jpg') }});">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 pt-lg-23 pt-md-15 pt-sm-10 pt-6 text-center">
+                    <h1 class="headingIV fwEbold playfair mb-4">Blog</h1>
+                    <ul class="list-unstyled breadCrumbs d-flex justify-content-center">
+                        <li class="mr-2"><a href="{{path('homepage')}}">Home</a></li>
+                        <li class="mr-2">/</li>
+                        <li class="active">Blog</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- twoColumns -->
+    <div class="twoColumns container pt-lg-23 pb-lg-20 pt-md-16 pb-md-4 pt-10 pb-4">
+        <div class="row">
+            <div class="col-12 col-lg-9 order-lg-3">
+                <!-- content -->
+                <article id="content">
+                    {% for article in articles %}
+                    <!-- newsBlogColumn -->
+                        <div class="newsBlogColumn mb-md-9 mb-6">
+                            <div class="imgHolder position-relative mb-6">
+                                <a href="blog-detail.html">
+                                    <img src="{{asset('Uploads/Images/' ~article.image )}}" alt="image description" class="img-fluid">
+                                </a>
+                            </div>
+                            <div class="textHolder d-flex align-items-start">
+                                <time class="time text-center text-uppercase py-sm-3 py-1 px-1" datetime={{article.date | date('d-m-y')}}> <strong class="fwEbold d-block mb-1">{{article.date | date('d')}}</strong> {{article.date | date('F')}}</time>
+                                <div class="alignLeft pl-sm-6 pl-3">
+                                    <h2 class="headingV fwEbold mb-2"><a href="{{ path('article_show', { 'idA': article.idA }) }}"> {{article.title}} </a></h2>
+                                    <span class="postBy d-block pb-sm-6 pb-2 mb-3">Post by: {#<a href="blog-detail.html">#}{{article.author}}</a></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                    <div class="col-12 mb-sm-0 mb-6">
+                        <!-- pagination -->
+                        <ul class="list-unstyled pagination d-flex justify-content-center align-items-end">
+                            <li><a href="javascript:void(0);"><i class="fas fa-chevron-left"></i></a></li>
+                            <li class="active"><a href="javascript:void(0);">1</a></li>
+                            <li><a href="javascript:void(0);">2</a></li>
+                            <li>...</li>
+                            <li><a href="javascript:void(0);"><i class="fas fa-chevron-right"></i></a></li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+            <div class="col-12 col-lg-3 order-lg-1">
+                <!-- sidebar -->
+                <aside id="sidebar">
+                    <!-- widget -->
+                    <section class="widget overflow-hidden mb-md-9 mb-6">
+                        <h3 class="headingVII fwEbold text-uppercase mb-4">Search</h3>
+                        <form action="javascript:void(0);" class="searchForm position-relative border">
+                            <fieldset>
+                                <input type="search" class="form-control" placeholder="Search article...">
+                                <button type="submit" class="position-absolute"><i class="icon-search"></i></button>
+                            </fieldset>
+                        </form>
+                    </section>
+
+                    <!-- widget -->
+                    <section class="widget overflow-hidden mb-md-5 mb-3">
+                        <h3 class="headingVII fwEbold text-uppercase mb-4">CATEGORIES</h3>
+                        <ul class="list-unstyled archiveList mb-0">
+                            <li class="mb-3"><a href="{{ path('article_listCat1') }}" class="d-block">Garden Care</a></li>
+                            <li class="mb-3"><a href="{{ path('article_listCat2') }}" class="d-block">Garden Tech</a></li>
+                            <li class="mb-3"><a href="{{ path('article_listCat3') }}" class="d-block">Plants</a></li>
+                            <li class="mb-3"><a href="{{ path('article_listCat4') }}" class="d-block">HousePlants</a></li>
+                            <li class="mb-3"><a href="{{ path('article_listCat5') }}" class="d-block">Seeds & Bulbs</a></li>
+                            <li class="mb-3"><a href="{{ path('article_listCat6') }}" class="d-block">Trees & Shrubs</a></li>
+                            <li class="mb-3"><a href="{{ path('article_listCat7') }}" class="d-block">DIY</a></li>
+                            <li class="mb-3"><a href="{{ path('article_listCat8') }}" class="d-block">Uncategorized</a></li>
+                        </ul>
+                    </section>
+                </aside>
+            </div>
+        </div>
+    </div>
+</main>
+    <script>
+        $(document).ready(function () {
+            var searchRequest = null;
+            $(".js-user-search").keyup(function () {
+                var minlength = 1;
+                var that = this;
+                var value = $(this).val();
+                var entitySelector = $("#entitiesNav").html('');
+                if (value.length >= minlength) {
+                    if (searchRequest != null)
+                        searchRequest.abort();
+                    searchRequest = $.ajax({
+                        type: "GET",
+                        url: "{{ path('ajax_search') }}",
+                        data: {
+                            'q': value
+                        },
+                        dataType: "text",
+                        success: function (msg) {
+                            //we need to check if the value is the same
+                            if (value == $(that).val()) {
+                                var result = JSON.parse(msg);
+                                $.each(result, function (key, arr) {
+                                    $.each(arr, function (id, value) {
+                                        if (key == 'entities') {
+                                            if (id != 'error') {
+                                                entitySelector.append('<li><a href="/daten/' + id + '">' +
+                                                    ' <div class="autho"><img src="{{ asset('uploads/images') }}' + value[2] + '></div>' +
+                                                    '<div class="notification-event">' +
+                                                    '<span class="h6 notification-friend"></a>' + value[0] + '</span>' + ' ' +
+                                                    '<span class="chat-message-item">' + '<b>' + value[1] + '</b>' + '</span>' + '</br>' +
+                                                    '</div>\n' +
+                                                    '<span class="notification-icon"><svg class="\' + escape(item.icon) + \'"><use xlink:href="icons/icons.svg#\' + escape(item.icon) + \'"></use></svg></span>' + '</a></li>');
+                                            } else {
+                                                entitySelector.append('<li class="errorLi">' + value + '</li>');
+                                            }
+                                        }
+                                    });
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+{% endblock %}

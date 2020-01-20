@@ -1,0 +1,53 @@
+{% extends 'ok.html.twig' %}
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+{% endblock  %}
+
+
+{% block body %}
+
+    <center>
+        <h1>Nursery</h1>
+    <table border="1">
+        <tbody>
+            <tr>
+                <th>Idn</th>
+                <td>{{ nursery.idN }}</td>
+            </tr>
+            <tr>
+                <th>Namen</th>
+                <td>{{ nursery.namen }}</td>
+            </tr>
+            <tr>
+                <th>Loc</th>
+                <td>{{ nursery.loc }}</td>
+            </tr>
+            <tr>
+                <th>Descr</th>
+                <td>{{ nursery.descr [3:-4] }}</td>
+            </tr>
+            <tr>
+                <th>Img</th>
+                <td><img src="{{asset('Uploads/Images/' ~nursery.img )}}" alt="image description" class="img-fluid" style="width:100px;height:100px;"></td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('nursery_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('nursery_edit', { 'idN': nursery.idN }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+    </center>
+{% endblock %}
+

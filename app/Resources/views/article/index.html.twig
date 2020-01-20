@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <style>
+        th, td {
+            border-bottom: 1px solid #ddd;
+            align-content: center;
+        }
+        tr:hover {background-color: #f5f5f5;}
+        th {
+            background-color: #36a729;
+            color: white;
+        }
+        .link{
+            color: #36a729;
+        }
+    </style>
+    </head>
+
+    <div class="col-12 col-lg-3 order-lg-1">
+
+            <!-- widget -->
+            <section class="widget overflow-hidden mb-md-6 mb-3">
+                <ul class="list-unstyled archiveList mb-0">
+                    <li class="mb-3"><a href="{{path('commentaire_index')}}" class="d-block">My Comments</a></li>
+
+                </ul>
+            </section>
+
+
+    </div>
+
+    <center>
+    <h1>My Articles</h1>
+
+    <table>
+        <col width="250">
+        <col width="150">
+        <col width="150">
+        <col width="100">
+        <col width="50">
+        <col width="50">
+        <col width="50">
+        <col width="50">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th><center>Views</center></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.title }}</td>
+                <td>{{ article.author }}</td>
+                <td>{{ article.category }}</td>
+                <td>{% if article.date %}{{ article.date|date('Y-m-d') }}{% endif %}</td>
+                <td><center>{{ article.views }}</center></td>
+                <td>
+                    <center>
+
+                            <a href="{{ path('article_show', { 'idA': article.idA }) }}" class="link">view</a>
+
+                    </center>
+
+                </td>
+                <td>
+                    <center>
+
+                        <a href="{{ path('article_edit', { 'idA': article.idA }) }}" class="link">edit</a>
+
+
+                    </center>
+
+                </td>
+                <td>
+                    <center>
+
+                        <a href="{{ path('article_delete', { 'idA': article.idA }) }}" class="link">delete</a>
+
+                    </center>
+
+                </td>
+
+
+
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        <br>
+        <div align="center">
+            <a href="{{ path('article_new') }}" class="btn btnTheme btnShop fwEbold text-white md-round py-md-3 px-md-4 py-2 px-3">Create a new article<i class="fas fa-arrow-right ml-2"></i></a>
+        </div>
+
+    </center>
+{% endblock %}

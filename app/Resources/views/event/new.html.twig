@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="modal-content">
+    {{ form_start(form) }}
+    <div class="modal-header">
+        <h1 style="color: #003147"><b><i><center>Event creation</center></i></b></h1>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+            <div class="form-group col-xs-5">
+                {{ form_label(form.nameE, 'nameE : ',{'attr': {'class': 'control-label'}})  }}
+                {{ form_widget(form.nameE,  {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group col-xs-3">
+            {{ form_label(form.dateE, 'dateE : ',{'attr': {'class': 'control-label'}}) }}
+
+            <div class="input-group date">
+                <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                {{ form_widget(form.dateE, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-xs-5">
+                {{ form_label(form.description, 'description : ',{'attr': {'class': 'control-label'}})  }}
+                {{ form_widget(form.description,  {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.lieuE, 'lieuE : ',{'attr': {'class': 'control-label'}})  }}
+                {{ form_widget(form.lieuE,  {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.nbP, 'nbP : ',{'attr': {'class': 'control-label'}})  }}
+                {{ form_widget(form.nbP,  {'attr': {'class': 'form-control'}}) }}
+
+            </div>
+    </div>
+
+    </div>
+
+    <button type="button" class="btn btn-outline-danger" >  <input type="submit" value="Create" /></button>
+    {{ form_end(form) }}
+
+    <ul>
+            <button type="button" class="btn btn-outline-danger" ><a href="{{ path('event_index') }}">Back to the list</a></button>
+
+    </ul>
+</div>
+{% endblock %}

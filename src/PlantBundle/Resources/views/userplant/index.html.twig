@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <center>
+    <h1>Userplants list</h1>
+    </center>
+    <br><br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Plant type</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for userplant in userplants %}
+            <tr>
+                <td><a href="{{ path('myplantmaintaining_index', { 'id': userplant.id }) }}">{{userplant.name  }}</a></td>
+
+                {#
+                   <td><a href="{{ path('userplant_show', { 'id': userplant.id }) }}">{{userplant.name  }}</a></td>
+                 #}
+                <td>{{ userplant.plantreferdence.plantname}}</td>
+
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('myplantmaintaining_index', { 'id': userplant.id }) }}">show history</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('userplant_edit', { 'id': userplant.id }) }}">rename</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('myplantmaintaining_new', { 'id': userplant.id }) }}">maintain</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('userplant_new') }}">Create a new userplant</a>
+        </li>
+    </ul>
+{% endblock %}

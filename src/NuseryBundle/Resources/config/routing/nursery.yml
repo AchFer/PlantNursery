@@ -1,0 +1,29 @@
+nursery_index:
+    path:     /index
+    defaults: { _controller: "NuseryBundle:Nursery:index" }
+    methods:  GET
+
+nursery_show:
+    path:     /{idN}/show
+    defaults: { _controller: "NuseryBundle:Nursery:show" }
+    methods:  GET
+
+nursery_new:
+    path:     /new
+    defaults: { _controller: "NuseryBundle:Nursery:new" }
+    methods:  [GET, POST]
+
+nursery_edit:
+    path:     /{idN}/edit
+    defaults: { _controller: "NuseryBundle:Nursery:edit" }
+    methods:  [GET, POST]
+
+nursery_delete:
+    path:     /{idN}/delete
+    defaults: { _controller: "NuseryBundle:Nursery:delete" }
+    methods:  DELETE
+
+nursery_earth:
+    path:     /earth
+
+    methods:  [GET, POST]

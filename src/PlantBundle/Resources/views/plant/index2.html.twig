@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+{% endblock %}
+{% block body %}
+   <table>
+       <tr>
+           <td></center>
+
+    <div class="sidebar-search">
+    <div class="input-group custom-search-form">
+        <input type="text" id="search" class="form-control" placeholder="Search...">
+    </div>
+    <!-- /input-group -->
+    </div>
+    <ul class="nav" id="side-menu">
+        <li>
+            <a href="#"> <span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level" id="entitiesNav" >
+            </ul>
+        </li>
+    </ul>
+               <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+           </td>
+<td>
+           <center>
+    <table>
+        <thead>
+        <tr>
+            <th>{{ knp_pagination_sortable(plants, 'Plantname', 'plantname') }}</th>
+            <th>{{ knp_pagination_sortable(plants, 'Binomialname', 'binomialname') }}</th>
+            <th>Clades</th>
+            <th>{{ knp_pagination_sortable(plants, 'Order', 'plantorder') }} </th>
+            <th>{{ knp_pagination_sortable(plants, 'Family', 'family') }} </th>
+            <th>{{ knp_pagination_sortable(plants, 'Subfamily', 'subfamily') }}</th>
+            <th>{{ knp_pagination_sortable(plants, 'Tribe', 'tribe') }}</th>
+            <th>{{ knp_pagination_sortable(plants, 'Genus', 'genus') }}</th>
+            <th>{{ knp_pagination_sortable(plants, 'Species', 'spacies') }}</th>
+            <th>Watering in sandy soil</th>
+            <th>Watering in clay soil</th>
+            <th>Photo</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <center><h1>Plants list ({{ plants.getTotalItemCount }})</h1>
+        {% for plant in plants %}
+            <tr>
+                <td><a href="{{ path('plant_show', { 'id': plant.id }) }}">{{ plant.plantname }}</a></td>
+                <td>{{ plant.binomialname }}</td>
+                <td>{{ plant.clade1 }} {{ plant.clade2 }} {{ plant.clade3 }}</td>
+                <td>{{ plant.plantorder }}</td>
+                <td>{{ plant.family }}</td>
+                <td>{{ plant.subfamily }}</td>
+                <td>{{ plant.tribe }}</td>
+                <td>{{ plant.genus }}</td>
+                <td>{{ plant.species }}</td>
+                <td>{{ plant.wateringsandysoil ~ " time every " ~ plant.frequencywateringsandysoil ~" "~ plant.periodofwateringsandysoil}}</td>
+                <td>{{ plant.wateringclaysoil  ~ " time every " ~ plant.frequencywateringclaysoil ~" "~ plant.periodofwateringclaysoil}}</td>
+                <td> {% if plant.photo is not empty %}
+                        <img src="{{ asset('Uploads/Images/' ~ plant.photo ) }}" >
+                    {% endif %}
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('plant_show', { 'id': plant.id }) }}">show</a>
+                        </li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>
+                                <a href="{{ path('plant_edit', { 'id': plant.id }) }}">edit</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </td>
+        </tr>
+    </table>
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(plants) }}
+    </div>
+    <ul>
+        {% if is_granted('ROLE_ADMIN') %}
+            <li>
+                <a href="{{ path('plant_new') }}">Create a new plant</a>
+            </li>
+        {% endif %}
+
+    </ul>
+   </table>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- jQuery is necessary -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            var searchRequest = null;
+            $("#search").keyup(function() {
+                var minlength = 2;
+                var that = this;
+                var value = $(this).val();
+                var entitySelector = $("#entitiesNav").html('');
+                if (value.length >= minlength ) {
+                    if (searchRequest != null)
+                        searchRequest.abort();
+                    searchRequest = $.ajax({
+                        type: "GET",
+                        url: "{{ path('ajax_search') }}",
+                        data: {
+                            'q' : value
+                        },
+                        dataType: "text",
+                        success: function(msg){
+                            //we need to check if the value is the same
+                            if (value==$(that).val()) {
+                                var result = JSON.parse(msg);
+                                $.each(result, function(key, arr) {
+                                    $.each(arr, function(id, value) {
+                                        if (key == 'entities') {
+                                            if (id != 'error') {
+                                                entitySelector.append('<a href="/Nursery_v0.2/web/plant/plant/'+id+'/show">'+value+'</a><br>');
+                                            } else {
+                                                entitySelector.append("<li class='errorLi'>"+value+"</li>");
+                                            }
+
+                                        }
+                                    });
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+{% endblock %}

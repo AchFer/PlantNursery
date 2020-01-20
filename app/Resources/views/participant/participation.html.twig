@@ -1,0 +1,48 @@
+{% extends 'front.html.twig' %}
+
+{% block body %}
+    <center><h1>Events list</h1></center>
+    <center>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Namee</th>
+                <th>Description</th>
+                <th>Datee</th>
+                <th>Lieue</th>
+                <th>Nbp</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for event in events %}
+                <tr>
+                    <td><a href="{{ path('event_show', { 'id': event.id }) }}">{{ event.id }}</a></td>
+                    <td>{{ event.nameE }}</td>
+                    <td>{{ event.description }}</td>
+                    <td>{% if event.dateE %}{{ event.dateE|date('Y-m-d') }}{% endif %}</td>
+                    <td>{{ event.lieuE }}</td>
+                    <td>{{ event.nbP }}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('ajouterservation', {'id': event.id}) }}">participer</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('event_edit', { 'id': event.id }) }}">annuler participation</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </center>
+
+    <ul>
+        <li>
+            <a href="{{ path('event_new') }}">Create a new event</a>
+        </li>
+    </ul>
+{% endblock %}

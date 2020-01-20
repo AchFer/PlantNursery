@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <center>
+    <h1>Event</h1>
+
+    <table table id="example2" class="table table-bordered table-hover">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ event.id }}</td>
+            </tr>
+            <tr>
+                <th>Namee</th>
+                <td>{{ event.nameE }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ event.description }}</td>
+            </tr>
+            <tr>
+                <th>Datee</th>
+                <td>{% if event.dateE %}{{ event.dateE|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Lieue</th>
+                <td>{{ event.lieuE }}</td>
+            </tr>
+            <tr>
+                <th>Nbp</th>
+                <td>{{ event.nbP }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+
+        <button type="button" class="btn btn-outline-danger" > <a href="{{ path('event_index') }}">Back to the list</a></button>
+    </ul>
+        <ul>
+            <button type="button" class="btn btn-outline-primary" > <a href="{{ path('event_edit', { 'id': event.id }) }}">Edit</a></button>
+
+
+    </ul>
+    </center>
+{% endblock %}

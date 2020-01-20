@@ -1,0 +1,24 @@
+avis_index:
+    path:     /avis
+    defaults: { _controller: "EventBundle:Avis:index" }
+    methods:  GET
+
+avis_show:
+    path:     /avis/{idA}/showc
+    defaults: { _controller: "EventBundle:Avis:show" }
+    methods:  GET
+
+avis_new:
+    path:     /avis/newc/{$idEvent}
+    defaults: { _controller: "EventBundle:Avis:new" }
+    methods:  [GET, POST]
+
+avis_edit:
+    path:     /avis/{idA}/editc
+    defaults: { _controller: "EventBundle:Avis:edit" }
+    methods:  [GET, POST]
+
+avis_delete:
+    path:     /avis/{idA}/deletec
+    defaults: { _controller: "EventBundle:Avis:delete" }
+    methods:  DELETE

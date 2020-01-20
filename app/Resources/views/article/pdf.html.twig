@@ -1,0 +1,27 @@
+
+<style>
+h1 {
+    font-size: 50px;
+}
+h2{
+    font-size: 30px;
+}
+h3{
+    font-size: 20px;
+}
+p{
+    text-align: justify;
+    font-size: 25px;
+}
+</style>
+<br>
+<center>
+    <h1>{{ article.title }}</h1>
+</center>
+<br>
+<br>
+<br>
+<h2>Post By: {{ article.author }}</h2>
+<h3>Last Updated: {{article.date | date('d-m-y')}}</h3>
+<br>
+<p>{{ article.content }}</p>

@@ -1,0 +1,27 @@
+{% extends 'front.html.twig' %}
+
+{% block body %}
+    <h1 style="color: #003147"><b><i><center>Avis </center></i></b></h1>
+
+    <table id="example2" class="table table-bordered table-hover">
+        <tbody>
+            <tr>
+                <th>Ida</th>
+                <td>{{ avi.idA }}</td>
+            </tr>
+            <tr>
+                <th>Comment</th>
+                <td>{{ avi.comment }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+
+
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+
+    </ul>
+{% endblock %}

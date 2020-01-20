@@ -1,0 +1,43 @@
+{% extends '@EcommerceEcommerce/layout.html.twig' %}
+{% block body%}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <h2>Livraison</h2>
+            <div id="collapseOne" class="accordion-body collapse in">
+                <div class="accordion-inner">
+                    <div class="span4">
+                        <form action="{{ path('validation') }}" method="post">
+                            <h4>Adresse de livraison</h4>
+                            {% for adress in utilisateur.adresses %}
+                            <label  class="radio">
+                                <input type="radio" name="livraison" value="{{ adress.id }}" {% if loop.index0 == 0 %}checked="checked"{% endif %}>
+                                {{ adress.adresse }}... {{ adress.ville }}<a href="{{ path('livraisonsupprimeradress',{'id':adress.id}) }}"><i class="icon-trash"></i></a>
+                            </label>
+                           {% endfor %}
+                            <button type="submit" class="btn btn-primary">valideradress</button>
+                        </form>
+                            <br /><br />
+
+
+
+                    </div>
+
+
+                    <div class="span4 offset2">
+                        <h4>Ajouter une nouvelle adresse</h4>
+                        <form method="post" action="{{ path('livraison') }}">
+                           {{ form_widget(form) }}
+                            <button class="btn btn-primary">Ajouter</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    {% endblock %}

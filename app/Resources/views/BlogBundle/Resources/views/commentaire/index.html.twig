@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Commentaires list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idcommentaire</th>
+                <th>Content</th>
+                <th>Flag</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commentaire in commentaires %}
+            <tr>
+                <td><a href="{{ path('commentaire_show', { 'idCommentaire': commentaire.idCommentaire }) }}">{{ commentaire.idCommentaire }}</a></td>
+                <td>{{ commentaire.content }}</td>
+                <td>{{ commentaire.flag }}</td>
+                <td>{% if commentaire.date %}{{ commentaire.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('commentaire_show', { 'idCommentaire': commentaire.idCommentaire }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('commentaire_edit', { 'idCommentaire': commentaire.idCommentaire }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('commentaire_new') }}">Create a new commentaire</a>
+        </li>
+    </ul>
+{% endblock %}

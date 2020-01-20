@@ -1,0 +1,43 @@
+{% extends 'front.html.twig' %}
+
+{% block body %}
+    <h1 style="color: #003147"><b><i><center>Avis list</center></i></b></h1>
+
+    <table id="example2" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Ida</th>
+                <th>username</th>
+                <th>Event</th>
+                <th>Comment</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for avi in avis %}
+            <tr>
+                <td><a href="{{ path('avis_show', { 'idA': avi.idA }) }}">{{ avi.idA }}</a></td>
+                <td><span class="badge badge-danger navbar-badge">{{ avi.idU.username }}</span></td>
+                <td><span class="badge badge-warning navbar-badge">{{ avi.idE.nameE }}</span></td>
+                <td><span class="badge badge-success navbar-badge">{{ avi.comment }}</span></td>
+
+
+                <td>
+                    <ul>
+
+                        <button type="button" class="btn btn-outline-danger" >        <a href="{{ path('avis_show', { 'idA': avi.idA }) }}">show</a> </button>
+
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+  {#  <ul>
+        <li>
+            <a href="{{ path('avis_new', { 'id': 1 }) }}">Create a new avi</a>
+        </li>
+    </ul>
+#}
+{% endblock %}

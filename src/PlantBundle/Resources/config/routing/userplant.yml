@@ -1,0 +1,24 @@
+userplant_index:
+    path:     /
+    defaults: { _controller: "PlantBundle:Userplant:index" }
+    methods:  GET
+
+userplant_show:
+    path:     /{id}/show
+    defaults: { _controller: "PlantBundle:Userplant:show" }
+    methods:  GET
+
+userplant_new:
+    path:     /new
+    defaults: { _controller: "PlantBundle:Userplant:new" }
+    methods:  [GET, POST]
+
+userplant_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "PlantBundle:Userplant:edit" }
+    methods:  [GET, POST]
+
+userplant_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "PlantBundle:Userplant:delete" }
+    methods:  DELETE

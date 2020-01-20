@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+{% if is_granted("ROLE") %}
+    {%  if  app.user.id == plantmaintaining.userplant.user.id %}
+
+{% block body %}
+    <h1>{% if plantmaintaining.photo is not empty %}
+            <img src="{{ asset('Uploads/Images/' ~ plantmaintaining.photo ) }}" >
+        {% endif %}
+        </tr>Plantmaintaining</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Plant Name</th>
+                <td>{{ plantmaintaining.userplant.name }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if plantmaintaining.date %}{{ plantmaintaining.date|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Soiltype</th>
+                <td>{{ plantmaintaining.soiltype }}</td>
+            </tr>
+            <tr>
+                <th>Watered</th>
+                <td>{% if plantmaintaining.watered %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Humidity</th>
+                <td>{{ plantmaintaining.humidity }}</td>
+            </tr>
+            <tr>
+                <th>Temperature</th>
+                <td>{{ plantmaintaining.temperature }}</td>
+            </tr>
+            <tr>
+                <th>Luminosity</th>
+                <td>{{ plantmaintaining.luminosity }}</td>
+            </tr>
+            <tr>
+                <th>Height</th>
+                <td>{{ plantmaintaining.height }}</td>
+            </tr>
+            <tr>
+
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('myplantmaintaining_index',{'id':plantmaintaining.userplant.id}) }}"> {{ plantmaintaining.userplant.name }} history</a>
+        </li>
+        <li>
+            <a href="{{ path('userplant_index')}}">Back to my plant list</a>
+        </li>
+        <li>
+            <a href="{{ path('plantmaintaining_edit', { 'id': plantmaintaining.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
+    {% endif %}
+{% endif %}

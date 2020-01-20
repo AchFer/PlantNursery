@@ -1,0 +1,53 @@
+{% extends 'pdf.html.twig' %}
+
+{% block body %}
+    <h1>Articles list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Ida</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Category</th>
+                <th>Content</th>
+                <th>Date</th>
+                <th>Archive</th>
+                <th>Views</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td><a href="{{ path('article_show', { 'idA': article.idA }) }}">{{ article.idA }}</a></td>
+                <td>{{ article.title }}</td>
+                <td>{{ article.author }}</td>
+                <td>{{ article.category }}</td>
+                <td>{{ article.content }}</td>
+                <td>{% if article.date %}{{ article.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ article.archive }}</td>
+                <td>{{ article.views }}</td>
+                <td>{{ article.image }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('article_show', { 'idA': article.idA }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('article_edit', { 'idA': article.idA }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('article_new') }}">Create a new article</a>
+        </li>
+    </ul>
+{% endblock %}

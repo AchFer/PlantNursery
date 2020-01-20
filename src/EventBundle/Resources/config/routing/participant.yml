@@ -1,0 +1,25 @@
+
+participant_index:
+    path:     /participant
+    defaults: { _controller: "EventBundle:Participant:index" }
+    methods:  GET
+
+participant_show:
+    path:     participant/{idPar}/show
+    defaults: { _controller: "EventBundle:Participant:show" }
+    methods:  GET
+
+participant_new:
+    path:     participant/new
+    defaults: { _controller: "EventBundle:Participant:new" }
+    methods:  [GET, POST]
+
+participant_edit:
+    path:     participant/{idPar}/edit
+    defaults: { _controller: "EventBundle:Participant:edit" }
+    methods:  [GET, POST]
+
+participant_delete:
+    path:     participant/{idPar}/delete
+    defaults: { _controller: "EventBundle:Participant:delete" }
+    methods:  DELETE

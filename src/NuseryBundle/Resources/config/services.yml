@@ -1,0 +1,4 @@
+services:
+#    nusery.example:
+#        class: NuseryBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

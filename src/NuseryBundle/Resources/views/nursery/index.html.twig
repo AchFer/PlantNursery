@@ -1,0 +1,47 @@
+{% extends 'ok.html.twig' %}
+
+{% block body %}
+    <h1>Nurseries list</h1>
+
+    <table border="1" >
+        <thead>
+            <tr>
+                <th>Idn</th>
+                <th>Namen</th>
+                <th>Loc</th>
+                <th>Descr</th>
+                <th>Img</th>
+                <th>Idu</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for nursery in nurseries %}
+            <tr>
+                <td><a href="{{ path('nursery_show', { 'idN': nursery.idN }) }}">{{ nursery.idN }}</a></td>
+                <td>{{ nursery.namen }}</td>
+                <td>{{ nursery.loc }}</td>
+                <td>{{ nursery.descr }}</td>
+                <td><img src="{{asset('Uploads/Images/' ~nursery.img )}}" alt="image description" class="img-fluid" style="width:100px;height:100px;"></td
+                <td>{{ nursery.idU }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('nursery_show', { 'idN': nursery.idN }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('nursery_edit', { 'idN': nursery.idN }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('nursery_new') }}">Create a new nursery</a>
+        </li>
+    </ul>
+{% endblock %}

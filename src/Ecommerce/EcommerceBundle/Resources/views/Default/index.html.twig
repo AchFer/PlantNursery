@@ -1,0 +1,59 @@
+{% extends '@EcommerceEcommerce/layout.html.twig' %}
+{% block body%}
+
+    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.facebook.com%2FPipini%25C3%25A9re-100747938036540%2F%3Fmodal%3Dadmin_todo_tour&layout=button_count&size=small&appId=314998105776905&width=91&height=20" width="91" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+    <div class="container">
+
+        <div class="row">
+
+
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <div class="span3 pull-left">
+                    {{  include ('@UtilisateurUtilisateur/modules/utilisateurconnecte.html.twig') }}
+                </div>
+
+            {% else %}
+                <div class="span3">
+                    {{ include ('@UtilisateurUtilisateur/modules/usernoncon.html.twig') }}
+                </div>
+            {% endif %}
+
+
+                <ul class="thumbnails">
+                    {% for produit in produits %}
+                        <li class="span3">
+                            <div class="thumbnail">
+
+                                <div class="caption">
+                                    <img src="{{ asset('uploads/'~ produit.image.alt)}}" width="500" height="500">
+                                    <h4>{{  produit.nom }}</h4>   <h4>{{ produit.image.alt  }}</h4>
+                                    <p>{{ produit.prix|tva(produit.tva.multiplicate) }}DT/p>
+                                        <a class="btn btn-primary" href="{{ path('presentation',{'id':produit.id}) }}">Plus d'infos</a>
+                                        {% if panier[produit.id] is not defined %}
+                                        <a class="btn btn-success" href="{{ path('ajouteraupanier',{'id':produit.id}) }}">Ajouter au panier</a>
+                                        {% else %} <p>aucun produit</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="pagination">
+                    <ul>
+                        <li class="disabled"><span>Précédent</span></li>
+                        <li class="disabled"><span>1</span></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">Suivant</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

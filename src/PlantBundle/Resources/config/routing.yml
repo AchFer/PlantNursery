@@ -1,0 +1,15 @@
+plant_plant:
+    resource: "@PlantBundle/Resources/config/routing/plant.yml"
+    prefix:   /plant
+
+plant_userplant:
+        resource: "@PlantBundle/Resources/config/routing/userplant.yml"
+        prefix:   /userplant
+
+plant_plantmaintaining:
+    resource: "@PlantBundle/Resources/config/routing/plantmaintaining.yml"
+    prefix:   /plantmaintaining
+
+plant_homepage:
+    path:     /
+    defaults: { _controller: PlantBundle:Default:index }

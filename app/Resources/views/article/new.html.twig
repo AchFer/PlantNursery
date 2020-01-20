@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <style>
+        .right {
+            position: absolute;
+            right: 50px;
+
+        }
+    </style>
+    <div class="right">
+        <a href="{{ path('article_index') }}" class="btn btnTheme btnShop fwEbold text-white md-round py-md-3 px-md-4 py-2 px-3">Back to my articles<i class="fas fa-arrow-right ml-2"></i></a>
+    </div>
+    <center>
+    <h1>New Article:</h1>
+    </center>
+    <br>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+    <center>
+        <input type="submit"  class="btn btnTheme btnShop fwEbold text-white md-round py-md-3 px-md-4 py-2 px-3" value="Post" />
+    </center>
+    <br>
+    {{ form_end(form) }}
+
+
+        <script src="{{ asset('bundles/blog/ckeditor/ckeditor.js') }}"></script>
+{% endblock %}

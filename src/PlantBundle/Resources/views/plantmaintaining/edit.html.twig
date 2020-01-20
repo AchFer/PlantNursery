@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('date/jquery-ui.css') }}">
+    <link rel="stylesheet" href="{{ asset('date/style.css') }}">
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js'"></script>
+
+    <script>
+        $( function() {
+            $( "#plantbundle_plantmaintaining_date" ).datepicker({
+                minDate: "-30D",
+                maxDate: "+0D",
+                showButtonPanel: true
+            });
+
+        } );
+    </script>
+
+{% endblock %}
+
+{% block body %}
+
+    <center>
+        <h1>Edit my plant maintaining </h1>
+    </center>
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Edit" />
+    {{ form_end(edit_form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('myplantmaintaining_index', { 'id': plantmaintaining.userplant.id }) }}">Back to history</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

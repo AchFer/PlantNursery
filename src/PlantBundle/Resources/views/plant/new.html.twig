@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+        <h1>Plant creation</h1>
+    {% if is_granted('ROLE_ADMIN') %}
+        <script src="{{ asset('bundles/fosckeditor/ckeditor.js') }}"></script>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+            <input type="submit" value="Create" />
+        {{ form_end(form) }}
+
+        <ul>
+            <li>
+                <a href="{{ path('plant_index') }}">Back to the list</a>
+            </li>
+        </ul>
+    {% else %}
+        <center><h1>Access denied</h1></center>
+    {% endif %}
+
+{% endblock %}

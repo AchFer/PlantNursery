@@ -1,0 +1,41 @@
+{% extends 'front.html.twig' %}
+
+{% block body %}
+    <h1>Revs list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Idn</th>
+                <th>Rev</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rev in revs %}
+            <tr>
+                <td><a href="{{ path('revs_show', { 'id': rev.id }) }}">{{ rev.id }}</a></td>
+                <td>{{ rev.idN }}</td>
+                <td>{{ rev.rev }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('revs_show', { 'id': rev.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('revs_edit', { 'id': rev.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('revs_new') }}">Create a new rev</a>
+        </li>
+    </ul>
+{% endblock %}
